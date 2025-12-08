@@ -95,34 +95,37 @@
   </div>
 
   <script>
-    function updateCountdown() {
-      const target = new Date("January 02, 2026 00:00:00 CET");
-      const now = new Date();
-      let diff = target - now;
+   function updateCountdown() {
+  const target = new Date("2026-01-02T00:00:00+01:00"); // CET is UTC+1
+  const now = new Date();
+  let diff = target - now;
 
-      if (diff < 0) diff = 0;
+  if (diff < 0) diff = 0;
 
-      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      let minutes = Math.floor((diff / (1000 * 60)) % 60);
-      let seconds = Math.floor((diff / 1000) % 60);
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  let minutes = Math.floor((diff / (1000 * 60)) % 60);
+  let seconds = Math.floor((diff / 1000) % 60);
 
-      // Split days into 4 two‑digit parts like the design
-      const parts = [days, hours, minutes, seconds].map(n => String(n).padStart(2, "0"));
+  const parts = [days, hours, minutes, seconds].map(n =>
+    String(n).padStart(2, "0")
+  );
 
-      document.getElementById("day").textContent = parts[0];
-      document.getElementById("hour").textContent = parts[1];
-      document.getElementById("minute").textContent = parts[2];
-      document.getElementById("second").textContent = parts[3];
-    }
+  document.getElementById("day").textContent = parts[0];
+  document.getElementById("hour").textContent = parts[1];
+  document.getElementById("minute").textContent = parts[2];
+  document.getElementById("second").textContent = parts[3];
+}
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
   </script>
 </body>
 
 
 </html>
+
 
 
 
